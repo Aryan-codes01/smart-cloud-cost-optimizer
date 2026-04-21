@@ -1,0 +1,8 @@
+provider,accountId,month,service,category,region,resourceId,resourceName,instanceType,purchaseOption,cost,usageHours,utilizationPct,storageGb,storageUsedPct,kubernetesCluster,namespace,cpuAvgPct,memoryAvgPct,recommendedRightsize,environment,owner,criticality
+AWS,aws-prod-001,2026-03,Amazon EC2,compute,ap-south-1,i-0a12prodweb,prod-web-01,m5.2xlarge,On-Demand,798,720,26,,,,,22,39,m5.xlarge,production,platform,high
+AWS,aws-dev-771,2026-03,Amazon EC2,compute,ap-south-1,i-0b77idledev,dev-api-sandbox,t3.large,On-Demand,118,85,6,,,,,4,18,Stop or move to Lambda,development,api,low
+AWS,aws-data-104,2026-03,Amazon S3,storage,ap-south-1,s3-customer-archive,customer-archive,,,240,,,4800,31,,,,,Move cold data to Glacier Instant Retrieval,production,data,medium
+Azure,azure-core-055,2026-03,Azure Virtual Machines,compute,centralindia,vm-prod-billing,vm-prod-billing,Standard_D8s_v5,PayAsYouGo,663,720,37,,,,,29,47,Enable reserved instance 1-year,production,finance,high
+Azure,azure-aks-902,2026-03,Azure Kubernetes Service,kubernetes,centralindia,aks-growth,aks-growth,,,472,,48,,,aks-growth,recommendation-engine,43,57,,production,devops,high
+GCP,gcp-ml-900,2026-03,Compute Engine,compute,asia-south1,gce-forecast-batch,forecast-batch,n2-standard-8,OnDemand,626,720,39,,,,,33,46,Use committed use discount,production,ai,medium
+GCP,gcp-storage-660,2026-03,Cloud Storage,storage,asia-south1,gcs-dr-backups,dr-backups,,,204,,,3600,28,,,,,Archive unused snapshots,production,ops,medium

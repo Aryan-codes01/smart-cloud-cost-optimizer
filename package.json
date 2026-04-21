@@ -1,0 +1,20 @@
+{
+  "name": "smart-cloud-cost-optimizer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MERN-based smart cloud cost optimizer with multi-cloud insights, forecasting, and automation flows.",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace server\" \"npm run dev --workspace client\"",
+    "dev:client": "npm run dev --workspace client",
+    "dev:server": "npm run dev --workspace server",
+    "build": "npm run build --workspace client",
+    "start": "npm run start --workspace server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
