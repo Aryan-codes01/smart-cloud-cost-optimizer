@@ -1,6 +1,11 @@
-import { appendActionLog, getActionLogs } from "../dataRepository.js";
+import {
+  appendActionLog,
+  getActionLogs,
+  getBillingRecords,
+} from "../dataRepository.js";
 import { env } from "../../config/env.js";
 import { createHttpError } from "../../utils/httpError.js";
+import { generateRecommendations } from "../recommendations/optimizationService.js";
 
 export function buildActionQueue(recommendations) {
   return recommendations
@@ -24,6 +29,11 @@ export function buildActionQueue(recommendations) {
     }));
 }
 
+export async function getExecutableActions() {
+  const records = await getBillingRecords();
+  return buildActionQueue(generateRecommendations(records));
+}
+
 export async function executeAction(actionId, role) {
   if (!["admin", "devops"].includes(role)) {
     throw createHttpError(
@@ -32,16 +42,23 @@ export async function executeAction(actionId, role) {
     );
   }
 
+  const executableActions = await getExecutableActions();
+  const action = executableActions.find((entry) => entry.id === actionId);
+
+  if (!action) {
+    throw createHttpError(404, "Action is no longer available for execution");
+  }
+
   const log = await appendActionLog({
     actionId,
-    type: "Manual execution",
-    provider: actionId.includes("aws") ? "AWS" : "Multi-cloud",
-    targetResource: actionId.replace("action-", ""),
+    type: action.name,
+    provider: action.provider,
+    targetResource: action.target,
     status: "Executed",
-    scheduledAt: "Executed now",
+    scheduledAt: action.schedule,
     executedBy: role,
-    savingsEstimate: 120,
-    notes: "Demo execution recorded successfully.",
+    savingsEstimate: action.estimatedMonthlySavings,
+    notes: "Execution recorded successfully.",
   });
 
   return log;

@@ -4,8 +4,6 @@ const navItems = [
   { to: "/", label: "Overview" },
   { to: "/recommendations", label: "Recommendations" },
   { to: "/actions", label: "Action Center" },
-  { to: "/kubernetes", label: "Kubernetes" },
-  { to: "/architecture", label: "System Design" },
 ];
 
 export function Sidebar() {
@@ -14,7 +12,7 @@ export function Sidebar() {
       <div className="brand-block">
         <span className="brand-kicker">MERN FinOps Platform</span>
         <h1>Smart Cloud Cost Optimizer</h1>
-        <p>College-demo friendly on the outside, startup-grade architecture underneath.</p>
+        <p>Operational cloud cost visibility, optimization planning, and safe action workflows in one workspace.</p>
       </div>
 
       <nav className="sidebar-nav">
@@ -34,7 +32,7 @@ export function Sidebar() {
 
       <div className="sidebar-footer">
         <span className="status-dot" />
-        Ready for upload, sync, forecast, and optimization demos
+        Ready for upload, sync, forecasting, and optimization workflows
       </div>
     </aside>
   );

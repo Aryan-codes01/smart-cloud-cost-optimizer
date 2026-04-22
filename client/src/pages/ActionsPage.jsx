@@ -35,7 +35,7 @@ export function ActionsPage({ dashboard, onExecuteAction, loading }) {
 
           {!dashboard.roleVisibility.canExecuteActions ? (
             <div className="note-card">
-              Switch to Admin or DevOps role to demonstrate execution flows.
+              Switch to the Admin or DevOps role to access execution workflows.
             </div>
           ) : null}
         </SectionCard>

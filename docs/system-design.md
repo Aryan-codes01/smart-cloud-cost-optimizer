@@ -4,8 +4,7 @@
 
 Build a smart cloud cost optimizer that works as:
 
-- A college mini project with mock billing uploads
-- A serious cloud optimization dashboard with live billing adapters
+- A serious cloud optimization dashboard with upload-based onboarding
 - A future SaaS platform with role-based workflows and auto-actions
 
 ## High-Level Architecture
@@ -58,13 +57,13 @@ MongoDB
 
 - Builds an approval queue from recommendations
 - Allows Admin and DevOps roles to execute actions
-- Logs execution for audit and demo visibility
+- Logs execution for audit visibility and operational traceability
 
 ### 6. Data Layer
 
 - `BillingRecord` collection for normalized cloud billing and resource metrics
 - `ActionLog` collection for execution history
-- Memory fallback for zero-setup demo reliability
+- Memory fallback for zero-setup local reliability
 
 ## Frontend Screens
 
@@ -72,12 +71,12 @@ MongoDB
 - `Recommendations`: Searchable savings opportunities and next-month forecast
 - `Action Center`: Auto-action queue and audit trail
 - `Kubernetes`: Cluster and namespace cost efficiency
-- `System Design`: Viva-friendly architecture explanation
+- `System Design`: Architecture explanation and service flow reference
 
 ## Why This Feels Product-Grade
 
 - Role-based views for Admin, DevOps, and Finance
 - Multi-cloud normalized schema
-- Upload-first workflow for smooth demos
+- Upload-first workflow for fast onboarding
 - Live AWS billing connector path for real integration
 - Clear service separation for future SaaS scaling

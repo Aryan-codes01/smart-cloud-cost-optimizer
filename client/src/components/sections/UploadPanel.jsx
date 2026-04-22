@@ -18,9 +18,9 @@ export function UploadPanel({ onUpload, loading }) {
   return (
     <form className="upload-panel" onSubmit={handleSubmit}>
       <label className="file-dropzone">
-        <span className="eyebrow">Mock AWS / Azure / GCP bill</span>
+        <span className="eyebrow">AWS / Azure / GCP billing input</span>
         <strong>Upload CSV or JSON billing data</strong>
-        <p>Perfect for your mini-project demo and ready to grow into live billing sync.</p>
+        <p>Import billing exports quickly today and extend the workflow to live provider sync over time.</p>
         <input
           type="file"
           accept=".csv,.json"
@@ -32,7 +32,7 @@ export function UploadPanel({ onUpload, loading }) {
         <label className="field-group">
           <span>Import Mode</span>
           <select value={strategy} onChange={(event) => setStrategy(event.target.value)}>
-            <option value="append">Append to existing demo data</option>
+            <option value="append">Append to current dataset</option>
             <option value="replace">Replace current dataset</option>
           </select>
         </label>

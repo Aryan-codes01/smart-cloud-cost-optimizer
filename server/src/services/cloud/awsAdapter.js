@@ -1,4 +1,4 @@
-import { appendBillingRecords } from "../dataRepository.js";
+import { replaceBillingRecordsByFilter } from "../dataRepository.js";
 import { env, providerConfig } from "../../config/env.js";
 import { roundCurrency } from "../../utils/formatters.js";
 
@@ -86,9 +86,10 @@ export async function syncAwsLiveCosts() {
         }))
       ) || [];
 
-    if (records.length > 0) {
-      await appendBillingRecords(records);
-    }
+    await replaceBillingRecordsByFilter(
+      (record) => record.accountId === "aws-live-ce",
+      records
+    );
 
     return {
       provider: "AWS",

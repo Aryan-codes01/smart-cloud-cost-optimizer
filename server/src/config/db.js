@@ -12,7 +12,7 @@ export async function connectDatabase(mongoUri) {
   } catch (error) {
     databaseReady = false;
     console.warn(
-      "MongoDB unavailable. Falling back to in-memory demo store:",
+      "MongoDB unavailable. Falling back to the in-memory store:",
       error.message
     );
   }
