@@ -19,14 +19,14 @@ const blocks = [
   {
     title: "Data Layer",
     copy:
-      "MongoDB is the primary store for billing and action logs, with an in-memory fallback so the demo still works without local database setup.",
+      "MongoDB is the primary store for billing and action logs, with an in-memory fallback for fast local setup and resilience.",
   },
 ];
 
 export function ArchitecturePage() {
   return (
     <div className="page-grid">
-      <SectionCard title="Structured System Design" kicker="How to explain the backend in viva or demo">
+      <SectionCard title="Structured System Design" kicker="Platform architecture and service flow">
         <div className="architecture-grid">
           {blocks.map((block) => (
             <article className="architecture-card" key={block.title}>

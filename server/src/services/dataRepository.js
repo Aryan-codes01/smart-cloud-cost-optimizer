@@ -74,6 +74,39 @@ export async function appendBillingRecords(records) {
   return normalizedRecords;
 }
 
+export async function replaceBillingRecordsByFilter(filterFn, records) {
+  const timestamp = new Date().toISOString();
+  const normalizedRecords = records.map((record) => ({
+    ...record,
+    id: record.id || uuid(),
+    updatedAt: timestamp,
+    createdAt: record.createdAt || timestamp,
+  }));
+
+  if (isDatabaseReady()) {
+    const existingRecords = await BillingRecord.find({}).lean();
+    const retainedRecords = existingRecords
+      .filter((record) => !filterFn(record))
+      .map(({ _id, ...record }) => record);
+
+    await BillingRecord.deleteMany({});
+
+    if (retainedRecords.length > 0) {
+      await BillingRecord.insertMany(retainedRecords);
+    }
+
+    if (normalizedRecords.length > 0) {
+      await BillingRecord.insertMany(normalizedRecords);
+    }
+  }
+
+  memoryStore.billingRecords = [
+    ...memoryStore.billingRecords.filter((record) => !filterFn(record)),
+    ...normalizedRecords,
+  ];
+  return normalizedRecords;
+}
+
 export async function getActionLogs() {
   if (isDatabaseReady()) {
     const logs = await ActionLog.find({}).sort({ createdAt: -1 }).lean();

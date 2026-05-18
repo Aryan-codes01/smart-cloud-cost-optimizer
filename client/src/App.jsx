@@ -3,9 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AppShell } from "./components/layout/AppShell.jsx";
 import { useDashboardData } from "./hooks/useDashboardData.js";
 import { ActionsPage } from "./pages/ActionsPage.jsx";
-import { ArchitecturePage } from "./pages/ArchitecturePage.jsx";
 import { DashboardPage } from "./pages/DashboardPage.jsx";
-import { KubernetesPage } from "./pages/KubernetesPage.jsx";
 import { RecommendationsPage } from "./pages/RecommendationsPage.jsx";
 
 export default function App() {
@@ -60,8 +58,6 @@ export default function App() {
               />
             }
           />
-          <Route path="/kubernetes" element={<KubernetesPage dashboard={dashboard} />} />
-          <Route path="/architecture" element={<ArchitecturePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AppShell>

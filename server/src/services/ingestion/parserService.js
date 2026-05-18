@@ -65,27 +65,39 @@ export function parseBillingPayload(file) {
   const lowerName = file.originalname.toLowerCase();
 
   if (lowerName.endsWith(".json")) {
-    const parsed = JSON.parse(raw);
-    const records = Array.isArray(parsed) ? parsed : parsed.records;
+    try {
+      const parsed = JSON.parse(raw);
+      const records = Array.isArray(parsed) ? parsed : parsed.records;
 
-    if (!Array.isArray(records)) {
-      throw createHttpError(
-        400,
-        "JSON must contain an array or a { records: [] } object"
-      );
+      if (!Array.isArray(records)) {
+        throw createHttpError(
+          400,
+          "JSON must contain an array or a { records: [] } object"
+        );
+      }
+
+      return records.map(normalizeRow);
+    } catch (error) {
+      if (error.status) {
+        throw error;
+      }
+
+      throw createHttpError(400, "Uploaded JSON is invalid");
     }
-
-    return records.map(normalizeRow);
   }
 
   if (lowerName.endsWith(".csv")) {
-    const rows = parse(raw, {
-      columns: true,
-      skip_empty_lines: true,
-      trim: true,
-    });
+    try {
+      const rows = parse(raw, {
+        columns: true,
+        skip_empty_lines: true,
+        trim: true,
+      });
 
-    return rows.map(normalizeRow);
+      return rows.map(normalizeRow);
+    } catch {
+      throw createHttpError(400, "Uploaded CSV is invalid");
+    }
   }
 
   throw createHttpError(400, "Only CSV and JSON uploads are supported");

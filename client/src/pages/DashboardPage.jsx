@@ -23,11 +23,11 @@ export function DashboardPage({
     <div className="page-grid">
       <section className="hero-panel">
         <div>
-          <span className="eyebrow">College Submission + SaaS Vision</span>
-          <h2>Show upload-based optimization today, then pitch live multi-cloud automation tomorrow.</h2>
+          <span className="eyebrow">Cloud FinOps Control Center</span>
+          <h2>Track cloud spend, surface optimization opportunities, and operationalize cost actions from one dashboard.</h2>
           <p>
-            This dashboard is built to demo monthly cost trends, service breakdowns,
-            actionable savings, forecast intelligence, and safe auto-actions from one interface.
+            This workspace brings together monthly spend trends, service breakdowns,
+            savings recommendations, forecast intelligence, and controlled execution workflows.
           </p>
         </div>
         <div className="hero-callouts">

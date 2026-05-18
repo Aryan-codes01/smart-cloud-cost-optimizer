@@ -6,6 +6,8 @@ export const env = {
     "mongodb://127.0.0.1:27017/smart-cloud-cost-optimizer",
   awsRegion: process.env.AWS_REGION || "ap-south-1",
   autoActionMode: process.env.AUTO_ACTION_MODE === "true",
+  defaultRole: process.env.DEFAULT_ROLE || "admin",
+  roleOverrideSecret: process.env.ROLE_OVERRIDE_SECRET || "",
 };
 
 export const providerConfig = {
